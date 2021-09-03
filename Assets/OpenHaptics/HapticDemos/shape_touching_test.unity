@@ -627,6 +627,51 @@ Transform:
   m_Father: {fileID: 684298699}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!1 &860017854
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 860017856}
+  - component: {fileID: 860017855}
+  m_Layer: 0
+  m_Name: VibrationScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &860017855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860017854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11171da5d16fc8c4fb92f600240b484b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HapticDevice: {fileID: 0}
+  animationRotate: {fileID: 0}
+--- !u!4 &860017856
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860017854}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1061251915
 GameObject:
   m_ObjectHideFlags: 0
@@ -1094,9 +1139,6 @@ GameObject:
   - component: {fileID: 1661123119}
   - component: {fileID: 1661123123}
   - component: {fileID: 1661123122}
-  - component: {fileID: 1661123121}
-  - component: {fileID: 1661123120}
-  - component: {fileID: 1661123124}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -1118,35 +1160,6 @@ Transform:
   m_Father: {fileID: 1974796719}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &1661123120
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661123118}
-  serializedVersion: 2
-  m_Mass: 5
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 3
---- !u!135 &1661123121
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661123118}
-  m_Material: {fileID: 13400000, guid: c1d7b08c5b379e64eb4a290d5655a929, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1661123122
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1194,19 +1207,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1661123118}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1661123124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1661123118}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763b3e10782427f4ab220a31239fda7d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Thrust: 20
 --- !u!1 &1668683693
 GameObject:
   m_ObjectHideFlags: 0
@@ -1641,11 +1641,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1974796719}
   - component: {fileID: 1974796723}
-  - component: {fileID: 1974796722}
   - component: {fileID: 1974796721}
   - component: {fileID: 1974796720}
   m_Layer: 0
-  m_Name: Cylinder (1)
+  m_Name: invCylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1680,6 +1679,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedRotationY: 0
   speedRotationZ: 0
+  sphereAnimate: 0
 --- !u!23 &1974796721
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1719,20 +1719,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1974796722
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1974796718}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1974796723
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1850,6 +1836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speedRotationY: 0
   speedRotationZ: 0
+  sphereAnimate: 0
 --- !u!1 &2104366956
 GameObject:
   m_ObjectHideFlags: 0
