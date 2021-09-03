@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class VibrationDemoScript : MonoBehaviour {
 
-	public HapticPlugin HapticDevice = null;
+	public HapticPlugin HapticDevice    = null;
+	public obtRotate    animationRotate = null ;
 	private bool vibrationOn;
 	private int FXID = -1;
 
 	void Start () 
-	{
+	{	
+		animationRotate = GameObject.Find("invCylinder").GetComponent<obtRotate>();
+		animationRotate.animateSphere(0.0);
 		vibrationOn = false;
 		if (HapticDevice == null)
 			HapticDevice = (HapticPlugin)FindObjectOfType(typeof(HapticPlugin));
@@ -18,7 +21,14 @@ public class VibrationDemoScript : MonoBehaviour {
 			Debug.LogError("This script requires that Haptic Device be assigned.");
 	}
 
-	void TurnEffectOn()
+	void sphrAnimationON(){
+		animationRotate.animateSphere(5.0);
+	}
+	void sphrAnimationOFF(){
+		animationRotate.animateSphere(0.0);
+	}
+
+	public void TurnEffectOn()
 	{
 		if (HapticDevice == null) return; 		//If there is no device, bail out early.
 
@@ -36,14 +46,14 @@ public class VibrationDemoScript : MonoBehaviour {
 
 		// Send the effect settings to OpenHaptics.
 		double[] pos = {0.0, 0.0, 0.0}; // Position (not used for vibration)
-		double[] dir = {0.0, 1.0, 0.0}; // Direction of vibration
+		double[] dir = {1.0, 0.0, 0.0}; // Direction of vibration
 
 		HapticPlugin.effects_settings(
 			HapticDevice.configName,
 			FXID,
-			0.33, // Gain
-			0.33, // Magnitude
-			300,  // Frequency
+			0.63, // Gain
+			0.63, // Magnitude
+			40,  // Frequency
 			pos,  // Position (not used for vibration)
 			dir); //Direction.
 		
@@ -52,33 +62,13 @@ public class VibrationDemoScript : MonoBehaviour {
 		HapticPlugin.effects_startEffect(HapticDevice.configName, FXID );
 	}
 
-	void TurnEffectOff()
+	public void TurnEffectOff()
 	{
 		if (HapticDevice == null) return; 		//If there is no device, bail out early.
 		if (FXID == -1)	return;  				//If there is no effect, bail out early.
 
+		sphrAnimationOFF();
 		HapticPlugin.effects_stopEffect(HapticDevice.configName, FXID );
-	}
-
-
-	void Update () 
-	{
-		// If there's no haptic device, bail out early.
-		if (HapticDevice == null) return;
-
-
-		// Toggle on the v Key
-		if (Input.GetKeyDown("v"))
-		{
-			vibrationOn = !vibrationOn;
-
-			//If we've just turned it ON
-			if (vibrationOn)
-				TurnEffectOn();
-			else
-				TurnEffectOff();
-		}
-
 	}
 
 	void OnDestroy()
@@ -96,7 +86,7 @@ public class VibrationDemoScript : MonoBehaviour {
 		TurnEffectOff();
 	}
 
-	/*
+	
 	void Update()
 	{
 		// If there's no haptic device, bail out early.
@@ -109,15 +99,14 @@ public class VibrationDemoScript : MonoBehaviour {
 		if ( buttonState != vibrationOn)
 		{
 			vibrationOn = buttonState;
-
+			sphrAnimationON();
 			//If we've just turned it ON
 			if (vibrationOn)
+				{ 
 				TurnEffectOn();
-			else
-				TurnEffectOff();
+			} else
+				{TurnEffectOff();}
 		}
 
 	}
-	*/
 }
-
