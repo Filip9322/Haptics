@@ -93,7 +93,7 @@ public class VibrationDemoScript : MonoBehaviour {
 		if (HapticDevice == null)
 			return;
 
-		bool buttonState = (HapticDevice.Buttons [0] != 0);
+		bool buttonState = (HapticDevice.Buttons [1] != 0);
 
 		//If the Button is on and the vibration isn't, or vice-versa
 		if ( buttonState != vibrationOn)
