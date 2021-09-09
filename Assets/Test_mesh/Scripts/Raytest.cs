@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +6,7 @@ public class Raytest : MonoBehaviour
 {
     public GameObject lastHit;
     public LineRenderer laserLineRenderer;
+    public pullEffectSpring effectSpring;
 
     public float laserWidth     = 0.1f;
     public float laserMaxLength = 5f; 
@@ -14,6 +15,7 @@ public class Raytest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        effectSpring = GameObject.Find("effectsHapticDevice").GetComponent<pullEffectSpring>();
         laserLineRenderer.SetWidth(laserWidth, laserWidth);
     }
 
@@ -28,12 +30,21 @@ public class Raytest : MonoBehaviour
 
             Debug.DrawRay(transform.position, transform.forward, Color.green);
             lastHit   = hit.transform.gameObject;
-            collision = hit.point;
-            laserLineRenderer.enabled = true;
+
+            if (lastHit == hit.transform.gameObject)
+            {
+                collision = hit.point;
+                laserLineRenderer.enabled = true;
+                
+                effectSpring.laserPos   = transform.position;
+                effectSpring.pullDir    = transform.forward;
+                effectSpring.pullingOn  = true;
+            }
         }
         else
         {
             laserLineRenderer.enabled = false;
+            effectSpring.pullingOn  = false;
         }
 
         laserLineRenderer.SetPosition(0, transform.position);
