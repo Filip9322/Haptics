@@ -33,8 +33,7 @@ public class Raytest : MonoBehaviour
         {
             var objectRayPointing = hit.transform;
             var selectedRenderer  = objectRayPointing.GetComponent<Renderer>();
-            defaultMaterial       = selectedRenderer.material; print(defaultMaterial);
-
+            defaultMaterial       = selectedRenderer.material;
             Debug.DrawRay(transform.position, transform.forward, Color.green);
             lastHit   = hit.transform.gameObject;
 
