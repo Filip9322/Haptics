@@ -6,7 +6,7 @@ public class Raytest : MonoBehaviour
 {
     private GameObject lastHit;
     public LineRenderer laserLineRenderer;
-    public pullEffectSpring effectSpring;
+    public pullConstantEffect effectSpring;
 
     public float laserWidth     = 0.1f;
     public float laserMaxLength = 5f; 
@@ -19,7 +19,7 @@ public class Raytest : MonoBehaviour
     void Start()
     {
         lastHit = null;
-        effectSpring = GameObject.Find("effectsHapticDevice").GetComponent<pullEffectSpring>();
+        effectSpring = GameObject.Find("effectsHapticDevice").GetComponent<pullConstantEffect>();
         laserLineRenderer.SetWidth(laserWidth, laserWidth);
     }
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pullEffectSpring : MonoBehaviour {
+public class pullConstantEffect : MonoBehaviour {
 
     public  HapticPlugin HapticDevice    = null;
     public  Vector3 pullDir, laserPos;
