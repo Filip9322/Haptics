@@ -164,12 +164,12 @@ public class HapticEffect : MonoBehaviour {
 	void OnDestroy()
 	{
 		//For every haptic device, send a Stop event to OpenHaptics
-		for (int ii = 0; ii < devices.Length; ii++)
+		for (var ii = 0; ii < devices.Length; ii++)
 		{
 			HapticPlugin device = devices [ii];
 			if (device == null)
 				continue;
-			int ID = FXID [ii];
+			var ID = FXID [ii];
 			HapticPlugin.effects_stopEffect(device.configName, ID);
 		}
 	}
